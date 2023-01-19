@@ -11,10 +11,15 @@ spec:
             - name: "deployment"
               properties:
                 deploymentstrategy: "direct"
+
     - name: "production"
       sequences:
         - name: "delivery"
           triggeredOn:
             - event: "qa.delivery.finished"
           tasks:
+            - name: "approval"
+              properties:
+                pass: "manual"
+                warning: "manual"
             - name: "deployment"
